@@ -1,4 +1,6 @@
 import React from 'react';
+
+
 var Editor=function(editable, attr, format, editorClass, defaultValue){
 
 
@@ -31,10 +33,11 @@ var Editor=function(editable, attr, format, editorClass, defaultValue){
                 options=values.map(function(d,i){
                     rowValue=format?format(d):d;
                     return(
-                        <option key={'option'+i} value={d}>{rowValue}</option>
+                        <option key={'option'+i} value={d.id}>{rowValue}</option>
                     )
                 });
             }
+            
             return(
                 <select {...attr} defaultValue={defaultValue}>{options}</select>
             );
@@ -49,7 +52,7 @@ var Editor=function(editable, attr, format, editorClass, defaultValue){
                         keyUpHandler(e);
                     }
                 };
-                saveBtn=<butto className="btn btn-info btn-xs textarea-save-btn" onClick={keyUpHandler}>save</butto>
+                saveBtn=<button className="btn btn-info btn-xs textarea-save-btn" onClick={keyUpHandler}>save</button>
             }
 
             return(
@@ -73,7 +76,16 @@ var Editor=function(editable, attr, format, editorClass, defaultValue){
           return (
             <input {...attr} type='checkbox' value={values} defaultChecked={checked}/>
           );
-        } else{//process other input type. as password,url,email...
+        } 
+        // for passing on custom components as edit fields
+        else if(editable.type === 'custom'){
+          var CustomWidget = editable.widget;
+          return(
+
+                <CustomWidget {...attr} attr={attr} config={editable.config} defaultValue={defaultValue} />
+            )
+        }
+        else{//process other input type. as password,url,email...
             return(
                 <input {...attr} type={type} defaultValue={defaultValue}/>
             )

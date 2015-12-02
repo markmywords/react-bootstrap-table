@@ -44,9 +44,10 @@ class TableColumn extends React.Component{
         opts.onDoubleClick = this.handleCellEdit.bind(this);
       }
     }
+    var cellValue = this.props.children;
     return (
       <td style={tdStyle} className={classname} {...opts}>
-        {this.props.children}
+        {cellValue}
       </td>
     )
   }

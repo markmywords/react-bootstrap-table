@@ -3,6 +3,7 @@ import Const from './Const';
 import Editor from './Editor'
 import Notifier from './Notification.js';
 import classSet from 'classnames';
+import ReactDOM from 'react-dom'
 
 class TableEditColumn extends React.Component{
     constructor(props){
@@ -65,7 +66,8 @@ class TableEditColumn extends React.Component{
       }
   }
   componentDidMount(){
-      var input = this.refs.inputRef;
+      //var input = this.refs.inputRef;      
+      var input = ReactDOM.findDOMNode(this.refs.inputRef)      
       // input.value = this.props.children||'';
       input.focus();
   }
