@@ -81,8 +81,7 @@ var Editor=function(editable, attr, format, editorClass, defaultValue){
         else if(editable.type === 'custom'){
           var CustomWidget = editable.widget;
           return(
-
-                <CustomWidget {...attr} attr={attr} config={editable.config} defaultValue={defaultValue} />
+                <CustomWidget {...attr} attr={attr} options={editable.options} defaultValue={defaultValue} />
             )
         }
         else{//process other input type. as password,url,email...
