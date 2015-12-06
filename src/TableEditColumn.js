@@ -34,6 +34,11 @@ class TableEditColumn extends React.Component{
     if(this.props.blurToSave){
       let value = e.currentTarget.type == 'checkbox'?
                     this._getCheckBoxValue(e):e.currentTarget.value;
+      // check if value is a json string and parse it.
+      try{
+        value = JSON.parse(value);
+      }
+      catch(ex){} // just let it pass otherwise
       if(!this.validator(value)){
           return;
       }
